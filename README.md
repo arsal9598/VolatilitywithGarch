@@ -1,0 +1,3 @@
+# Volatility Forecasting using GARCH
+
+This project provides a web-based interface that allows users to forecast the volatility of any stock using a GARCH (Generalized Autoregressive Conditional Heteroskedasticity) model. The web application is built using Flask, and it retrieves stock data from Yahoo Finance, processes it, and displays forecasted volatility along with historical log returns. The user can input any stock ticker and select a custom date range to perform the analysis.

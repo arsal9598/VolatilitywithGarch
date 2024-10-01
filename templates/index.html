@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Volatility Forecast (GARCH)</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Stock Volatility Modeling with GARCH</h1>
+        
+        <form method="POST" action="/">
+            <label for="stock">Stock Symbol:</label>
+            <input type="text" id="stock" name="stock" value="{{ stock }}" required><br><br>
+
+            <label for="start">Start Date:</label>
+            <input type="date" id="start" name="start" value="{{ start }}"><br><br>
+
+            <label for="end">End Date:</label>
+            <input type="date" id="end" name="end" value="{{ end }}"><br><br>
+
+            <button type="submit">Submit</button>
+        </form>
+
+        <div id="volatility-graph"></div>
+
+        {% if forecast_range %}
+        <h3>Forecasted Volatility Range: {{ forecast_range }}</h3>
+        {% endif %}
+    </div>
+
+    <script>
+        const plotData = {{ plot_data | safe }};
+        const layout = {
+            title: 'Volatility Forecast and Log Returns',
+            xaxis: { title: 'Date' },
+            yaxis: { title: 'Value' }
+        };
+        Plotly.newPlot('volatility-graph', plotData, layout);
+    </script>
+</body>
+</html>
